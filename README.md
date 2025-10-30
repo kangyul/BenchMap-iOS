@@ -1,4 +1,7 @@
 # 🗺️ BenchMap
+<p>
+  <img src="BenchMap/Assets.xcassets/AppIcon.appiconset/appstore.png" width="160" alt="BenchMap Logo"/>
+</p>
 
 **BenchMap**은 사용자의 현재 위치를 기반으로 주변 벤치를 찾아주는 iOS 앱입니다.  
 현재 MVP 단계에서는 네이버 지도 SDK와 CoreLocation을 사용해  
