@@ -6,19 +6,25 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
+	@StateObject private var locationVM = LocationViewModel()
+
+	var body: some View {
+		VStack(spacing: 16) {
+			NaverMapView(userLocation: $locationVM.userLocation)
+			.ignoresSafeArea()
+
+			Button("위치 권한 요청") {
+				locationVM.requestAuthorization()
+			}
+			.buttonStyle(.borderedProminent)
+		}
+		.padding()
+	}
 }
 
 #Preview {
-    ContentView()
+	ContentView()
 }

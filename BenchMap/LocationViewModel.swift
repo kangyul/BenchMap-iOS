@@ -22,11 +22,9 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 	}
 
 	func requestAuthorization() {
-		// 사용자에게 위치 권한 요청
 		manager.requestWhenInUseAuthorization()
 	}
 
-	// 권한 상태 바뀔 때마다 호출
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
 		authorizationStatus = manager.authorizationStatus
 
@@ -40,7 +38,6 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 		}
 	}
 
-	// 위치 업데이트 수신
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		guard let loc = locations.last else { return }
 		userLocation = loc.coordinate

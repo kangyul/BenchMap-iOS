@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		28BE97C62EB20FFB004A2095 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 28BE97C52EB20FFB004A2095 /* NMapsMap */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		28BE97B42EB1BBF7004A2095 /* BenchMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenchMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		28BE97C82EB21029004A2095 /* Exceptions for "BenchMap" folder in "BenchMap" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 28BE97B32EB1BBF7004A2095 /* BenchMap */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		28BE97B62EB1BBF7004A2095 /* BenchMap */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				28BE97C82EB21029004A2095 /* Exceptions for "BenchMap" folder in "BenchMap" target */,
+			);
 			path = BenchMap;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28BE97C62EB20FFB004A2095 /* NMapsMap in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = BenchMap;
 			packageProductDependencies = (
+				28BE97C52EB20FFB004A2095 /* NMapsMap */,
 			);
 			productName = BenchMap;
 			productReference = 28BE97B42EB1BBF7004A2095 /* BenchMap.app */;
@@ -94,6 +113,9 @@
 			);
 			mainGroup = 28BE97AB2EB1BBF7004A2095;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				28BE97C42EB20FFB004A2095 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 28BE97B52EB1BBF7004A2095 /* Products */;
 			projectDirPath = "";
@@ -256,11 +278,14 @@
 				DEVELOPMENT_TEAM = 2A3TUFLT9N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BenchMap/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변 벤치 위치를 보여주기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -288,11 +313,14 @@
 				DEVELOPMENT_TEAM = 2A3TUFLT9N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BenchMap/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주변 벤치 위치를 보여주기 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		28BE97C42EB20FFB004A2095 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.23.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		28BE97C52EB20FFB004A2095 /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28BE97C42EB20FFB004A2095 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
+			productName = NMapsMap;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 28BE97AC2EB1BBF7004A2095 /* Project object */;
 }
