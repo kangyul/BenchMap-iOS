@@ -1,6 +1,6 @@
 # 🗺️ BenchMap
 <p>
-  <img src="BenchMap/Assets.xcassets/AppIcon.appiconset/appstore.png" width="160" alt="BenchMap Logo"/>
+  <img src="BenchMap/Assets.xcassets/launch_logo.imageset/launch_logo.png" width="160" alt="BenchMap Logo"/>
 </p>
 
 **BenchMap**은 사용자의 현재 위치를 기반으로 주변 벤치를 찾아주는 iOS 앱입니다.  
