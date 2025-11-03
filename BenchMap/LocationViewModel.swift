@@ -8,6 +8,13 @@
 import Foundation
 import CoreLocation
 import Combine
+import UIKit
+
+extension CLAuthorizationStatus {
+	var isAuthorized: Bool {
+		self == .authorizedAlways || self == .authorizedWhenInUse
+	}
+}
 
 @MainActor
 final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -19,10 +26,19 @@ final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDele
 	override init() {
 		super.init()
 		manager.delegate = self
+		authorizationStatus = manager.authorizationStatus
+		if authorizationStatus.isAuthorized {
+			manager.startUpdatingLocation()
+		}
 	}
 
 	func requestAuthorization() {
 		manager.requestWhenInUseAuthorization()
+	}
+
+	func openAppSettings() {
+		guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+		UIApplication.shared.open(url)
 	}
 
 	func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

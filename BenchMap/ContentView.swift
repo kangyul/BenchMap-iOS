@@ -17,20 +17,25 @@ struct ContentView: View {
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.ignoresSafeArea()
 
-			
-			VStack {
-				Spacer() // 버튼을 화면 아래쪽으로 내림
-				Button(action: {
-					locationVM.requestAuthorization()
-				}) {
-					Label("위치 권한 요청", systemImage: "location.fill")
-						.font(.headline)
-						.padding(.horizontal, 24)
-						.padding(.vertical, 12)
-						.background(Color(red: 255/255, green: 178/255, blue: 92/255))
-						.foregroundColor(.white)
-						.cornerRadius(12)
-						.shadow(radius: 4)
+			if !locationVM.authorizationStatus.isAuthorized {
+				VStack {
+					Spacer() // 버튼을 화면 아래쪽으로 내림
+					Button(action: {
+						if locationVM.authorizationStatus == .denied || locationVM.authorizationStatus == .restricted {
+							locationVM.openAppSettings()
+						} else {
+							locationVM.requestAuthorization()
+						}
+					}) {
+						Label("위치 권한 요청", systemImage: "location.fill")
+							.font(.headline)
+							.padding(.horizontal, 24)
+							.padding(.vertical, 12)
+							.background(Color(red: 255/255, green: 178/255, blue: 92/255))
+							.foregroundColor(.white)
+							.cornerRadius(12)
+							.shadow(radius: 4)
+					}
 				}
 			}
 		}
