@@ -12,16 +12,28 @@ struct ContentView: View {
 	@StateObject private var locationVM = LocationViewModel()
 
 	var body: some View {
-		VStack(spacing: 16) {
+		ZStack {
 			NaverMapView(userLocation: $locationVM.userLocation)
-			.ignoresSafeArea()
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.ignoresSafeArea()
 
-			Button("위치 권한 요청") {
-				locationVM.requestAuthorization()
+			
+			VStack {
+				Spacer() // 버튼을 화면 아래쪽으로 내림
+				Button(action: {
+					locationVM.requestAuthorization()
+				}) {
+					Label("위치 권한 요청", systemImage: "location.fill")
+						.font(.headline)
+						.padding(.horizontal, 24)
+						.padding(.vertical, 12)
+						.background(Color(red: 255/255, green: 178/255, blue: 92/255))
+						.foregroundColor(.white)
+						.cornerRadius(12)
+						.shadow(radius: 4)
+				}
 			}
-			.buttonStyle(.borderedProminent)
 		}
-		.padding()
 	}
 }
 
