@@ -12,6 +12,8 @@ import CoreLocation
 struct NaverMapView: UIViewRepresentable {
 	@Binding var userLocation: CLLocationCoordinate2D?
 
+	func makeCoordinator() -> Coordinator { Coordinator() }
+
 	func makeUIView(context: Context) -> NMFNaverMapView {
 		let naver = NMFNaverMapView(frame: .zero)
 
@@ -21,26 +23,33 @@ struct NaverMapView: UIViewRepresentable {
 		naver.showScaleBar = true
 
 		let mapView = naver.mapView
+		mapView.positionMode = .normal
+
+		let start = userLocation ?? CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780)
 		let initUpdate = NMFCameraUpdate(
-			scrollTo: NMGLatLng(lat: 37.5665, lng: 126.9780),
+			scrollTo: NMGLatLng(lat: start.latitude, lng: start.longitude),
 			zoomTo: 14
 		)
 		mapView.moveCamera(initUpdate)
-
-		mapView.positionMode = .direction
 
 		return naver
 	}
 
 	func updateUIView(_ naver: NMFNaverMapView, context: Context) {
-		if let c = userLocation {
-			let mapView = naver.mapView
-			let u = NMFCameraUpdate(
-				scrollTo: NMGLatLng(lat: c.latitude, lng: c.longitude),
-				zoomTo: max(mapView.cameraPosition.zoom, 14)
-			)
-			u.animation = .easeIn
-			mapView.moveCamera(u)
-		}
+		guard !context.coordinator.didCenterOnce, let c = userLocation else { return }
+
+		let mapView = naver.mapView
+		let u = NMFCameraUpdate(
+			scrollTo: NMGLatLng(lat: c.latitude, lng: c.longitude),
+			zoomTo: max(mapView.cameraPosition.zoom, 14)
+		)
+		u.animation = .easeIn
+		mapView.moveCamera(u)
+
+		context.coordinator.didCenterOnce = true
+	}
+
+	final class Coordinator {
+		var didCenterOnce = false
 	}
 }
