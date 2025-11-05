@@ -19,7 +19,7 @@ struct NaverMapView: UIViewRepresentable {
 
 		naver.showCompass = true
 		naver.showLocationButton = true
-		naver.showZoomControls = true
+		naver.showZoomControls = false
 		naver.showScaleBar = true
 
 		let mapView = naver.mapView
