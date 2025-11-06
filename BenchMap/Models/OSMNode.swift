@@ -9,8 +9,8 @@ import Foundation
 
 struct OSMNode: Codable, Identifiable, Hashable {
 	let id: Int
-	let latitude: Double
-	let longitude: Double
+	let lat: Double
+	let lon: Double
 	let tags: [String: String]?
 
 	var isBench: Bool {
@@ -22,5 +22,17 @@ struct OSMNode: Codable, Identifiable, Hashable {
 			return backrest == "yes" ? "등받이 있음" :  "등받이 없음"
 		}
 		return "벤치"
+	}
+
+	enum OverpassQuery {
+		static func benches(lat: Double, lon: Double, radiusMeters: Double) -> String {
+			"""
+			[out:json][timeout:25];
+			(
+				node["amenity"="bench"](around:\(Int(radiusMeters)),\(lat),\(lon));
+			);
+			out body;
+			"""
+		}
 	}
 }
