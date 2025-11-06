@@ -12,11 +12,11 @@ struct OverpassResponse: Decodable {
 }
 
 final class OverpassService {
-	func fetchBences(lat: Double, lon: Double, radiustMeters: Double) async throws -> [OSMNode] {
+	func fetchBenches(lat: Double, lon: Double, radiusMeters: Double) async throws -> [OSMNode] {
 		let query = OSMNode.OverpassQuery.benches(
 			lat: lat,
 			lon: lon,
-			radiusMeters: radiustMeters)
+			radiusMeters: radiusMeters)
 
 		var request = URLRequest(url: URL(string: "https://overpass-api.de/api/interpreter")!)
 		request.httpMethod = "POSt"

@@ -17,7 +17,7 @@ final class BenchSearchViewModel: ObservableObject {
 	func search(lat: Double, lon: Double, radiusMeters: Double) {
 		Task {
 			benches = try await service
-				.fetchBences(lat: lat, lon: lon, radiustMeters: radiusMeters)
+				.fetchBenches(lat: lat, lon: lon, radiusMeters: radiusMeters)
 		}
 	}
 }
