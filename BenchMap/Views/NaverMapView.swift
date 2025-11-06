@@ -80,6 +80,9 @@ struct NaverMapView: UIViewRepresentable {
 			let target = mapView.cameraPosition.target
 			cameraCenter.wrappedValue = CLLocationCoordinate2D(latitude: target.lat, longitude: target.lng)
 			circle?.center = NMGLatLng(lat: target.lat, lng: target.lng)
+
+			let zoom = mapView.cameraPosition.zoom
+			print("zoom: \(zoom)")
 		}
 	}
 }
