@@ -11,9 +11,18 @@ import CoreLocation
 struct ContentView: View {
 	@StateObject private var locationVM = LocationViewModel()
 
+	@State private var cameraCenter = CLLocationCoordinate2D(
+		latitude: 37.5665,
+		longitude: 126.9780
+	)
+	@State private var radiusMeters: Double = 500
+
 	var body: some View {
 		ZStack {
-			NaverMapView(userLocation: $locationVM.userLocation)
+			NaverMapView(
+				userLocation: $locationVM.userLocation,
+				cameraCenter: $cameraCenter,
+				searchRadiusMeters: radiusMeters)
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.ignoresSafeArea()
 
