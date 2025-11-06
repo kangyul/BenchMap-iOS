@@ -10,6 +10,7 @@ import CoreLocation
 
 struct ContentView: View {
 	@StateObject private var locationVM = LocationViewModel()
+	@StateObject private var benchVM = BenchSearchViewModel()
 
 	@State private var cameraCenter = CLLocationCoordinate2D(
 		latitude: 37.5665,
@@ -22,7 +23,8 @@ struct ContentView: View {
 			NaverMapView(
 				userLocation: $locationVM.userLocation,
 				cameraCenter: $cameraCenter,
-				searchRadiusMeters: radiusMeters)
+				searchRadiusMeters: radiusMeters,
+				benches: benchVM.benches)
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 				.ignoresSafeArea()
 
@@ -30,7 +32,11 @@ struct ContentView: View {
 			VStack {
 				Spacer()
 				Button {
-//						benchVM.load(around: cameraCenter, radius: 1200)
+					benchVM
+						.search(
+							lat: cameraCenter.latitude,
+							lon: cameraCenter.longitude,
+							radiusMeters: radiusMeters)
 				} label: {
 					Label("이 위치에서 벤치 찾기", systemImage: "magnifyingglass")
 						.font(.subheadline.weight(.semibold))

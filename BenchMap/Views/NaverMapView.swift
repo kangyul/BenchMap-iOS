@@ -13,6 +13,7 @@ struct NaverMapView: UIViewRepresentable {
 	@Binding var userLocation: CLLocationCoordinate2D?
 	@Binding var cameraCenter: CLLocationCoordinate2D
 	var searchRadiusMeters: Double
+	var benches: [OSMNode]
 
 	func makeCoordinator() -> Coordinator { Coordinator(cameraCenter: $cameraCenter) }
 
@@ -65,11 +66,33 @@ struct NaverMapView: UIViewRepresentable {
 			 circle.radius = searchRadiusMeters
 			print("circle.radius: \(circle.radius)")
 		}
+
+		context.coordinator.syncMarkers(on: mapView, with: benches)
 	}
 
 	final class Coordinator: NSObject, NMFMapViewCameraDelegate {
 		var didCenterOnce = false
 		var circle: NMFCircleOverlay?
+		var markers: [Int: NMFMarker] = [:]
+
+		func syncMarkers(on mapView: NMFMapView, with benches: [OSMNode]) {
+			let newIDs = Set(benches.map { $0.id })
+
+			// remove
+			for (id, m) in markers where !newIDs.contains(id) {
+				m.mapView = nil
+				markers.removeValue(forKey: id)
+			}
+
+			// add/update
+			for b in benches {
+				let marker = markers[b.id] ?? NMFMarker()
+				marker.position = NMGLatLng(lat: b.lat, lng: b.lon)
+				marker.captionText = b.description
+				marker.mapView = mapView
+				markers[b.id] = marker
+			}
+		}
 
 		private var cameraCenter: Binding<CLLocationCoordinate2D>
 		init(cameraCenter: Binding<CLLocationCoordinate2D>) {
