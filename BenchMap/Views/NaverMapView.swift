@@ -13,7 +13,7 @@ struct NaverMapView: UIViewRepresentable {
 	@Binding var userLocation: CLLocationCoordinate2D?
 	@Binding var cameraCenter: CLLocationCoordinate2D
 	var searchRadiusMeters: Double
-	var benches: [OSMNode]
+	var benches: [Bench]
 
 	func makeCoordinator() -> Coordinator { Coordinator(cameraCenter: $cameraCenter) }
 
@@ -75,7 +75,7 @@ struct NaverMapView: UIViewRepresentable {
 		var circle: NMFCircleOverlay?
 		var markers: [Int: NMFMarker] = [:]
 
-		func syncMarkers(on mapView: NMFMapView, with benches: [OSMNode]) {
+		func syncMarkers(on mapView: NMFMapView, with benches: [Bench]) {
 			let newIDs = Set(benches.map { $0.id })
 
 			// remove

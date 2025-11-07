@@ -10,7 +10,7 @@ import Combine
 
 @MainActor
 final class BenchSearchViewModel: ObservableObject {
-	@Published var benches: [OSMNode] = []
+	@Published var benches: [Bench] = []
 
 	private let service = OverpassService()
 

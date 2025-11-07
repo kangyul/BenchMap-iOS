@@ -1,5 +1,5 @@
 //
-//  OSMNode.swift
+//  Bench.swift
 //  BenchMap
 //
 //  Created by Yul Kang on 11/3/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OSMNode: Codable, Identifiable, Hashable {
+struct Bench: Codable, Identifiable, Hashable {
 	let id: Int
 	let lat: Double
 	let lon: Double

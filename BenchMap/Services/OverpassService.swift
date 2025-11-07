@@ -8,12 +8,12 @@
 import Foundation
 
 struct OverpassResponse: Decodable {
-	let elements: [OSMNode]
+	let elements: [Bench]
 }
 
 final class OverpassService {
-	func fetchBenches(lat: Double, lon: Double, radiusMeters: Double) async throws -> [OSMNode] {
-		let query = OSMNode.OverpassQuery.benches(
+	func fetchBenches(lat: Double, lon: Double, radiusMeters: Double) async throws -> [Bench] {
+		let query = Bench.OverpassQuery.benches(
 			lat: lat,
 			lon: lon,
 			radiusMeters: radiusMeters)
